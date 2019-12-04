@@ -7,12 +7,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "scooters", schema = "grindemo")
 public class Scooters implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,8 +24,8 @@ public class Scooters implements Serializable {
 	String idScooter;
 	@Column(name = "user")
 	String user;
-	@Column(name = "scooter_state")
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	ScooterStates scooterState;
+	@JoinColumn(name = "scooter_state")
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	ScootersStates scooterState;
 
 }
