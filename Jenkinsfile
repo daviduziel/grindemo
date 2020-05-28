@@ -1,5 +1,5 @@
 podTemplate(containers: [
-    containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
+    containerTemplate(name: 'maven', image: 'maven:3.6.1-jdk-13-alpine', ttyEnabled: true, command: 'cat'),
   ]) {
 
     node(POD_LABEL) {
