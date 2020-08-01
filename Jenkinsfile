@@ -1,16 +1,23 @@
-podTemplate(containers: [
-    containerTemplate(name: 'maven', image: 'maven:3.6.1-jdk-13-alpine', ttyEnabled: true, command: 'cat'),
-  ]) {
-
-    node(POD_LABEL) {
-        stage('Get a Maven project') {
-            git 'https://github.com/daviduziel/grindemo.git'
-            container('maven') {
-                stage('Build a Maven project') {
-                    sh 'mvn -B clean install'
-                }
+pipeline {
+    agent any
+    tools { 
+        maven 'Maven 3.3.9' 
+        jdk 'jdk11' 
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
             }
         }
 
+        stage ('Build') {
+            steps {
+                echo 'This is a minimal pipeline.'
+            }
+        }
     }
 }
