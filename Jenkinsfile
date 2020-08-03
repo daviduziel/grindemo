@@ -20,7 +20,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh '${jdk}\bin\java mvn install' 
+                sh '/home/daviduziel/tools/hudson.model.JDK/jdk-11/bin/java mvn install' 
             }
             post {
                 success {
