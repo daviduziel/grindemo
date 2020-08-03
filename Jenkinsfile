@@ -5,7 +5,7 @@ pipeline {
         jdk 'jdk-11' 
     }
     environment {
-        JAVA_HOME = "${jdk}"
+        JAVA_HOME = "${jdk}/bin"
     }
     stages {
         stage ('Initialize') {
