@@ -4,6 +4,9 @@ pipeline {
         maven 'Maven 3.6.3' 
         jdk 'jdk-11' 
     }
+    environment {
+        JAVA_HOME = '${jdk}'
+    }
     stages {
         stage ('Initialize') {
             steps {
