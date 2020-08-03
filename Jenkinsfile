@@ -1,32 +1,29 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
-    options {
-        skipStagesAfterUnstable()
+    agent any
+    tools { 
+        maven 'Maven 3.6.3' 
+        jdk 'jdk-11' 
     }
     stages {
-        stage('Build') {
+        stage ('Initialize') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
             }
         }
-        stage('Test') {
+
+        stage ('Build') {
             steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
+                withEnv(["JAVA_HOME=${ tool jdk }", "PATH+MAVEN=${tool maven}/bin:${env.JAVA_HOME}/bin"]) {
+                   sh 'mvn -V install' 
                 }
             }
-        }
-        stage('Deliver') { 
-            steps {
-                sh './jenkins/scripts/deliver.sh' 
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
             }
         }
     }
