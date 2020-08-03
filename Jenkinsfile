@@ -7,7 +7,7 @@ pipeline {
             }
             post {
                 success {
-                   sh 'ECHO SUCCESS'
+                   sh 'echo SUCCESS'
                 }
             }
         }
