@@ -20,7 +20,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'mvn install' 
+                sh '${jdk}\bin\java mvn install' 
             }
             post {
                 success {
