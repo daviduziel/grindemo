@@ -5,7 +5,7 @@ pipeline {
         jdk 'jdk-11' 
     }
     environment {
-        JAVA_HOME = '${jdk}'
+        JAVA_HOME = "${jdk}"
     }
     stages {
         stage ('Initialize') {
@@ -13,6 +13,7 @@ pipeline {
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
+                    echo "JAVA_HOME = ${JAVA_HOME}"
                 ''' 
             }
         }
