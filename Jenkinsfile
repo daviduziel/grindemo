@@ -16,7 +16,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                withEnv(["JAVA_HOME=${ tool jdk }", "PATH+MAVEN=${tool maven}/bin:${env.JAVA_HOME}/bin"]) {
+                withEnv(["JAVA_HOME=${ tool 'jdk-11' }", "PATH+MAVEN=${tool 'Maven 3.6.3'}/bin:${env.JAVA_HOME}/bin"]) {
                    sh 'mvn -V install' 
                 }
             }
